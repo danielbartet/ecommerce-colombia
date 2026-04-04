@@ -15,7 +15,7 @@ export default function Page() {
       <Header />
       <main>
         <Hero />
-        <div style={{ background: '#F0FAF0', width: '100%' }}>
+        <div style={{ background: '#F0FAF0', width: '100%', paddingTop: '16px' }}>
           <Categories />
           <OfertasDelDia />
           <PopularProducts />

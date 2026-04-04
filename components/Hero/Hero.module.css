@@ -10,17 +10,19 @@
   position: relative;
   width: 100%;
   outline: none;
-  aspect-ratio: 16 / 9;
+  min-height: 420px;
 }
 
 @media (min-width: 480px) {
   .carousel {
+    min-height: 340px;
     aspect-ratio: 16 / 7;
   }
 }
 
 @media (min-width: 768px) {
   .carousel {
+    min-height: unset;
     aspect-ratio: 16 / 5;
   }
 }
@@ -47,8 +49,14 @@
   position: relative;
   z-index: 2;
   text-align: center;
-  padding: var(--space-5) var(--space-6);
+  padding: 32px 20px 48px;
   max-width: 520px;
+}
+
+@media (min-width: 768px) {
+  .slideContent {
+    padding: var(--space-5) var(--space-6);
+  }
 }
 
 .badge {
@@ -68,25 +76,39 @@
 .title {
   font-family: var(--font-heading);
   font-weight: var(--font-extrabold);
-  font-size: clamp(2rem, 6vw, 3.5rem); /* minimum 32px per spec */
+  font-size: clamp(1.6rem, 5vw, 2.5rem);
   line-height: var(--leading-tight);
   color: var(--color-text-inverse);
   text-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
   margin-bottom: var(--space-3);
 }
 
+@media (min-width: 768px) {
+  .title {
+    font-size: clamp(2rem, 6vw, 3.5rem);
+  }
+}
+
 .subtitle {
-  font-size: clamp(0.875rem, 2.5vw, 1.125rem);
+  font-size: 14px;
   color: rgba(255, 255, 255, 0.9);
   margin-bottom: var(--space-5);
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
   line-height: var(--leading-normal);
+  white-space: normal;
+}
+
+@media (min-width: 768px) {
+  .subtitle {
+    font-size: clamp(0.875rem, 2.5vw, 1.125rem);
+  }
 }
 
 .cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  display: block;
+  width: fit-content;
+  margin-top: 16px;
+  text-align: center;
   background: #ffffff;
   color: var(--color-primary);
   border: none;
@@ -95,11 +117,13 @@
   font-size: var(--text-base);
   padding: 0 var(--space-6);
   min-height: var(--touch-target);
+  line-height: var(--touch-target);
   border-radius: 4px;
   text-decoration: none;
   transition: background var(--duration-fast) var(--ease-default),
               transform var(--duration-fast) var(--ease-default);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  margin-inline: auto;
 }
 
 .cta:hover {
@@ -125,6 +149,7 @@
   display: flex;
   gap: var(--space-2);
   z-index: 3;
+  padding-bottom: 24px;
 }
 
 .dot {

@@ -2,6 +2,7 @@
 .section {
   padding-block: 24px;
   background: var(--color-bg-white);
+  margin-top: 16px;
 }
 
 .container {
