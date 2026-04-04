@@ -114,7 +114,6 @@ export default function Header() {
             </button>
 
             <Link href="https://multiofertas.net" className={styles.logo} aria-label="MULTIOFERTAS.NET — Inicio">
-              <span className={styles.logoIcon} aria-hidden="true">⚡</span>
               <span className={styles.logoText}>
                 MULTI<span className={styles.logoAccent}>OFERTAS</span>
               </span>

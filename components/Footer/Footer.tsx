@@ -10,7 +10,6 @@ export default function Footer() {
           {/* Brand */}
           <div className={styles.brand}>
             <div className={styles.logo}>
-              <span aria-hidden="true" className={styles.logoIcon}>⚡</span>
               <span className={styles.logoText}>MULTIOFERTAS.NET</span>
             </div>
             <p className={styles.tagline}>
