@@ -1,3 +1,4 @@
+import { Store } from 'lucide-react';
 import styles from './BottomNav.module.css';
 
 export default function BottomNav() {
@@ -29,10 +30,7 @@ export default function BottomNav() {
         <li>
           <a href="https://multiofertas.net/tienda" className={styles.item}>
             <span className={styles.icon} aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-                <polyline points="9 22 9 12 15 12 15 22" />
-              </svg>
+              <Store width={22} height={22} strokeWidth={2} />
             </span>
             <span className={styles.label}>Tienda</span>
           </a>
