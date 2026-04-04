@@ -106,7 +106,7 @@ export default function OfertasDelDia() {
       <div className={styles.box}>
         {/* Header row */}
         <div className={styles.header}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0' }}>
+          <div className={styles.titleGroup}>
             <h2 className={styles.title}>&#x26A1; Ofertas del D&#xED;a</h2>
             <span style={{
               fontSize: '13px',

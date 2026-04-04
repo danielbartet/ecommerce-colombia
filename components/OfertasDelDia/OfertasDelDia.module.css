@@ -23,11 +23,26 @@
   margin-bottom: 12px;
 }
 
+.titleGroup {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
 .title {
   font-size: 16px;
   font-weight: 600;
   color: #1C1C1E;
   font-family: var(--font-rubik), sans-serif;
+}
+
+@media (max-width: 480px) {
+  .titleGroup {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
 }
 
 .viewAll {
