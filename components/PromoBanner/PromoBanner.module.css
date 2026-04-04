@@ -1,0 +1,64 @@
+/* ---- BANNER PROMOCIONAL ---- */
+.banner {
+  margin: var(--space-6) var(--space-4);
+  background: #1C1C1E; /* dark block per design spec */
+  border-radius: var(--radius-2xl);
+  padding: var(--space-8) var(--space-6);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid rgba(34, 167, 34, 0.30); /* subtle green border */
+}
+
+.banner::before {
+  content: '';
+  position: absolute;
+  top: -40%;
+  right: -10%;
+  width: 200px;
+  height: 200px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-full);
+}
+
+.banner::after {
+  content: '';
+  position: absolute;
+  bottom: -30%;
+  left: -5%;
+  width: 150px;
+  height: 150px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-full);
+}
+
+.eyebrow {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  font-size: var(--text-sm); /* 14px minimum */
+  font-weight: var(--font-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  padding: 4px 14px;
+  border-radius: var(--radius-full);
+  margin-bottom: var(--space-3);
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-weight: var(--font-extrabold);
+  font-size: clamp(1.4rem, 5vw, 2rem);
+  color: white;
+  line-height: var(--leading-tight);
+  margin-bottom: var(--space-2);
+}
+
+.desc {
+  color: rgba(255, 255, 255, 0.82);
+  font-size: var(--text-sm);
+  margin-bottom: var(--space-6);
+  max-width: 320px;
+  margin-inline: auto;
+  margin-bottom: var(--space-6);
+}

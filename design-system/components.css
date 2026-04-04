@@ -1,0 +1,744 @@
+/**
+ * MULTIOFERTAS.NET — Design System Components
+ * =============================================
+ * Estilos reutilizables de componentes UI.
+ * Requiere tokens.css cargado previamente.
+ *
+ * Índice:
+ *  1. Reset & Base
+ *  2. Tipografía utilitaria
+ *  3. Botones (.btn)
+ *  4. Cards (.card, .card-product, .card-glass)
+ *  5. Badges (.badge)
+ *  6. Inputs (.input, .search-bar)
+ *  7. Contenedor (.container)
+ *  8. Sección (.section)
+ *  9. Skeleton loaders
+ * 10. Utilidades (display, spacing, text)
+ */
+
+/* =============================================
+ * 1. RESET & BASE
+ * ============================================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  /* Evitar layout shift en scroll */
+  overflow-y: scroll;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+/* =============================================
+ * 2. TIPOGRAFÍA UTILITARIA
+ * ============================================= */
+
+.text-xs      { font-size: var(--text-xs); }
+.text-sm      { font-size: var(--text-sm); }
+.text-base    { font-size: var(--text-base); }
+.text-lg      { font-size: var(--text-lg); }
+.text-xl      { font-size: var(--text-xl); }
+.text-2xl     { font-size: var(--text-2xl); }
+.text-3xl     { font-size: var(--text-3xl); }
+
+.font-normal   { font-weight: var(--font-normal); }
+.font-medium   { font-weight: var(--font-medium); }
+.font-semibold { font-weight: var(--font-semibold); }
+.font-bold     { font-weight: var(--font-bold); }
+
+.font-heading  { font-family: var(--font-heading); }
+.font-body     { font-family: var(--font-body); }
+
+.text-primary   { color: var(--color-text-primary); }
+.text-secondary { color: var(--color-text-secondary); }
+.text-accent    { color: var(--color-accent); }
+.text-brand     { color: var(--color-secondary); }
+.text-inverse   { color: var(--color-text-inverse); }
+
+.text-center { text-align: center; }
+.text-left   { text-align: left; }
+.text-right  { text-align: right; }
+
+.line-clamp-1 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+/* =============================================
+ * 3. BOTONES
+ * ============================================= */
+
+/**
+ * .btn — Base de botón
+ * Modificadores: --primary, --secondary, --ghost, --danger, --sm, --lg, --full
+ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: var(--touch-target);
+  padding: 0 var(--space-5);
+  font-family: var(--font-heading);
+  font-size: var(--text-base);
+  font-weight: var(--font-semibold);
+  line-height: 1;
+  border-radius: var(--radius-full);
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: var(--transition-base);
+  white-space: nowrap;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Ripple effect on touch */
+.btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0);
+  transition: background var(--duration-fast) var(--ease-out);
+}
+.btn:active::after {
+  background: rgba(255,255,255,0.2);
+}
+
+/* — Primary (amarillo CTA) */
+.btn--primary {
+  background: var(--color-primary);
+  color: var(--color-primary-text);
+  box-shadow: var(--shadow-primary);
+}
+.btn--primary:active {
+  background: var(--color-primary-dark);
+  transform: scale(0.97);
+}
+
+/* — Secondary (azul) */
+.btn--secondary {
+  background: var(--color-secondary);
+  color: var(--color-text-inverse);
+  box-shadow: var(--shadow-blue);
+}
+.btn--secondary:active {
+  background: var(--color-secondary-dark);
+  transform: scale(0.97);
+}
+
+/* — Ghost (outline) */
+.btn--ghost {
+  background: transparent;
+  color: var(--color-secondary);
+  border-color: var(--color-secondary);
+}
+.btn--ghost:active {
+  background: var(--color-secondary-subtle);
+}
+
+/* — Ghost light (para usar sobre fondos oscuros) */
+.btn--ghost-light {
+  background: rgba(255,255,255,0.15);
+  color: var(--color-text-inverse);
+  border-color: rgba(255,255,255,0.4);
+  backdrop-filter: var(--blur-sm);
+}
+.btn--ghost-light:active {
+  background: rgba(255,255,255,0.25);
+}
+
+/* — Danger (rojo) */
+.btn--danger {
+  background: var(--color-accent);
+  color: var(--color-text-inverse);
+  box-shadow: var(--shadow-accent);
+}
+
+/* — Tamaños */
+.btn--sm {
+  min-height: 36px;
+  padding: 0 var(--space-4);
+  font-size: var(--text-sm);
+}
+.btn--lg {
+  min-height: 52px;
+  padding: 0 var(--space-8);
+  font-size: var(--text-lg);
+}
+.btn--full {
+  width: 100%;
+}
+
+/* — Icono only (cuadrado) */
+.btn--icon {
+  padding: 0;
+  width: var(--touch-target);
+  min-height: var(--touch-target);
+  border-radius: var(--radius-md);
+}
+
+/* =============================================
+ * 4. CARDS
+ * ============================================= */
+
+/**
+ * .card — Card base con glassmorphism
+ */
+.card {
+  background: var(--color-surface);
+  backdrop-filter: var(--blur-md);
+  -webkit-backdrop-filter: var(--blur-md);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-glass);
+  overflow: hidden;
+  transition: transform var(--duration-base) var(--ease-spring),
+              box-shadow var(--duration-base) var(--ease-default);
+}
+.card:active {
+  transform: scale(0.98);
+}
+
+/* — Card sólida (sin blur, mejor performance mobile) */
+.card--solid {
+  background: var(--color-surface-solid);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+/* — Card elevada */
+.card--elevated {
+  box-shadow: var(--shadow-lg);
+}
+
+/**
+ * .card-product — Card de producto e-commerce
+ */
+.card-product {
+  background: var(--color-surface-solid);
+  border-radius: var(--radius-xl);
+  border: 2px solid transparent;
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--duration-base) var(--ease-spring),
+              box-shadow var(--duration-base) var(--ease-default);
+  -webkit-tap-highlight-color: transparent;
+  position: relative;
+}
+.card-product:active {
+  transform: scale(0.97);
+  box-shadow: var(--shadow-md);
+}
+
+.card-product__image-wrap {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: var(--color-bg);
+}
+
+.card-product__image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--duration-slow) var(--ease-default);
+}
+
+.card-product__body {
+  padding: var(--space-3);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.card-product__name {
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  color: var(--color-text-primary);
+  line-height: var(--leading-snug);
+}
+
+.card-product__pricing {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.card-product__price-original {
+  font-size: var(--text-sm); /* 14px minimum per design spec */
+  color: var(--color-text-tertiary);
+  text-decoration: line-through;
+}
+
+.card-product__price-sale {
+  font-family: var(--font-heading);
+  font-size: var(--text-base);
+  font-weight: var(--font-bold);
+  color: var(--color-primary); /* #22A722 green per design spec */
+  line-height: 1;
+}
+
+.card-product__btn {
+  margin-top: auto;
+  padding-top: var(--space-2);
+}
+
+/* — Card glass (glassmorphism puro para highlights) */
+.card-glass {
+  background: linear-gradient(
+    145deg,
+    rgba(255,255,255,0.90) 0%,
+    rgba(255,255,255,0.70) 100%
+  );
+  backdrop-filter: var(--blur-lg);
+  -webkit-backdrop-filter: var(--blur-lg);
+  border: 1px solid rgba(255,255,255,0.6);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-glass);
+}
+
+/* =============================================
+ * 5. BADGES
+ * ============================================= */
+
+/**
+ * .badge — Etiqueta pequeña
+ * Modificadores: --sale (rojo), --new (azul), --hot (naranja), --free (verde)
+ */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-heading);
+  font-size: var(--text-sm); /* 14px minimum per design spec */
+  font-weight: var(--font-bold);
+  line-height: 1.4;
+  letter-spacing: var(--tracking-wide);
+  white-space: nowrap;
+}
+
+/* — Venta/Descuento (rojo) */
+.badge--sale {
+  background: var(--color-accent);
+  color: var(--color-text-inverse);
+}
+
+/* — Nuevo (azul) */
+.badge--new {
+  background: var(--color-secondary);
+  color: var(--color-text-inverse);
+}
+
+/* — Hot/Destacado (naranja) */
+.badge--hot {
+  background: var(--color-warning);
+  color: var(--color-text-inverse);
+}
+
+/* — Gratis/Envío (verde) */
+.badge--free {
+  background: var(--color-success);
+  color: var(--color-text-inverse);
+}
+
+/* — Counter badge (carrito, notificaciones) */
+.badge--counter {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  background: var(--color-primary); /* #22A722 green */
+  color: var(--color-text-inverse);
+  font-size: var(--text-sm); /* 14px minimum */
+  font-weight: var(--font-bold);
+  border-radius: var(--radius-full);
+  border: 2px solid var(--color-bg-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+/* =============================================
+ * 6. INPUTS
+ * ============================================= */
+
+/**
+ * .input — Campo de texto base
+ */
+.input {
+  display: block;
+  width: 100%;
+  min-height: var(--touch-target);
+  padding: var(--space-3) var(--space-4);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--font-normal);
+  color: var(--color-text-primary);
+  background: var(--color-surface-solid);
+  border: 1.5px solid var(--color-border-strong);
+  border-radius: var(--radius-full);
+  outline: none;
+  transition: border-color var(--duration-fast) var(--ease-default),
+              box-shadow var(--duration-fast) var(--ease-default);
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.input::placeholder {
+  color: var(--color-text-tertiary);
+}
+
+.input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-subtle);
+}
+
+/**
+ * .search-bar — Barra de búsqueda prominente
+ */
+.search-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-bar__input {
+  flex: 1;
+  min-height: 44px;
+  padding: var(--space-3) var(--space-12) var(--space-3) var(--space-4);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--color-text-primary);
+  background: var(--color-surface-solid);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-full);
+  outline: none;
+  transition: border-color var(--duration-fast) var(--ease-default),
+              box-shadow var(--duration-fast) var(--ease-default);
+  -webkit-appearance: none;
+}
+
+.search-bar__input::placeholder {
+  color: var(--color-text-tertiary);
+  font-size: var(--text-sm);
+}
+
+.search-bar__input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-subtle);
+}
+
+.search-bar__btn {
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  background: var(--color-primary);
+  border: none;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--color-primary-text);
+  transition: var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.search-bar__btn:active {
+  transform: translateY(-50%) scale(0.92);
+}
+
+/* =============================================
+ * 7. CONTENEDOR
+ * ============================================= */
+
+.container {
+  width: 100%;
+  max-width: var(--container-xl);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+}
+
+.container--sm { max-width: var(--container-sm); }
+.container--md { max-width: var(--container-md); }
+.container--lg { max-width: var(--container-lg); }
+
+/* =============================================
+ * 8. SECCIÓN
+ * ============================================= */
+
+.section {
+  padding-block: var(--space-12); /* 48px mobile minimum */
+}
+
+.section__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-4);
+  gap: var(--space-3);
+}
+
+.section__title {
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl); /* 24px base, min 32px on desktop */
+  font-weight: var(--font-bold);
+  color: var(--color-text-primary);
+  line-height: var(--leading-tight);
+}
+
+.section__link {
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  color: var(--color-primary);
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: color var(--duration-fast) var(--ease-default);
+}
+.section__link:hover {
+  color: var(--color-primary-dark);
+}
+
+/* =============================================
+ * 9. SKELETON LOADERS
+ * ============================================= */
+
+@keyframes skeleton-shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    #f0f0f0 25%,
+    #e8e8e8 50%,
+    #f0f0f0 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.5s infinite;
+  border-radius: var(--radius-sm);
+}
+
+.skeleton--text {
+  height: 1em;
+  border-radius: var(--radius-sm);
+}
+.skeleton--circle {
+  border-radius: var(--radius-full);
+}
+.skeleton--image {
+  aspect-ratio: 1;
+  border-radius: var(--radius-lg);
+}
+
+/* =============================================
+ * 10. UTILIDADES
+ * ============================================= */
+
+/* — Flexbox */
+.flex         { display: flex; }
+.flex-col     { flex-direction: column; }
+.items-center { align-items: center; }
+.items-start  { align-items: flex-start; }
+.justify-between { justify-content: space-between; }
+.justify-center  { justify-content: center; }
+.gap-1 { gap: var(--space-1); }
+.gap-2 { gap: var(--space-2); }
+.gap-3 { gap: var(--space-3); }
+.gap-4 { gap: var(--space-4); }
+.flex-1 { flex: 1; }
+.flex-shrink-0 { flex-shrink: 0; }
+
+/* — Grid */
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-3); }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-3); }
+
+/* — Espaciado */
+.mt-2 { margin-top: var(--space-2); }
+.mt-3 { margin-top: var(--space-3); }
+.mt-4 { margin-top: var(--space-4); }
+.mb-2 { margin-bottom: var(--space-2); }
+.mb-3 { margin-bottom: var(--space-3); }
+.mb-4 { margin-bottom: var(--space-4); }
+
+/* — Visibilidad */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* — Scroll horizontal snap */
+.scroll-x {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  gap: var(--space-3);
+  /* Ocultar scrollbar visual pero mantener funcionalidad */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scroll-x::-webkit-scrollbar { display: none; }
+.scroll-x > * { scroll-snap-align: start; flex-shrink: 0; }
+
+/* — Truncar texto */
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* — Precio tachado */
+.price-original {
+  font-size: var(--text-sm); /* 14px minimum */
+  color: var(--color-text-tertiary);
+  text-decoration: line-through;
+}
+
+.price-sale {
+  font-family: var(--font-heading);
+  font-weight: var(--font-bold);
+  color: var(--color-primary); /* #22A722 green per design spec */
+}
+
+/* — Divisor */
+.divider {
+  height: 1px;
+  background: var(--color-border);
+  margin-block: var(--space-4);
+}
+
+/* =============================================
+ * RESPONSIVE OVERRIDES
+ * ============================================= */
+
+@media (min-width: 768px) {
+  .container {
+    --container-pad: var(--space-6);
+  }
+
+  .section {
+    padding-block: var(--space-16); /* 64px on tablet */
+  }
+
+  .section__title {
+    font-size: var(--text-3xl); /* 30px on tablet */
+  }
+
+  .grid-2 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    --container-pad: var(--space-8);
+  }
+
+  .section {
+    padding-block: var(--space-20); /* 80px on desktop */
+  }
+
+  .section__title {
+    font-size: var(--text-4xl); /* 36px on desktop — exceeds 32px minimum */
+  }
+
+  .grid-2 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .grid-3 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .card-product:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--color-primary);
+  }
+
+  .card-product:hover .card-product__image-wrap img {
+    transform: scale(1.05);
+  }
+
+  .btn--primary:hover {
+    background: var(--color-primary-dark);
+    transform: translateY(-1px) scale(1.02);
+    box-shadow: 0 6px 20px rgba(34, 167, 34, 0.40);
+  }
+
+  .btn--secondary:hover {
+    background: var(--color-secondary-light);
+    transform: translateY(-1px);
+  }
+}

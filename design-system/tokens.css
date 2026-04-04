@@ -1,0 +1,265 @@
+/**
+ * MULTIOFERTAS.NET — Design System Tokens
+ * =========================================
+ * CSS Custom Properties (variables) para todo el sistema de diseño.
+ * Importar este archivo ANTES que components.css y cualquier otro CSS.
+ *
+ * Estructura:
+ *  1. Colores — Paleta principal + semántica
+ *  2. Tipografía — Familias, tamaños, pesos, line-heights
+ *  3. Espaciado — Escala de 4px base
+ *  4. Radios de borde
+ *  5. Sombras — Multicapa para profundidad (glassmorphism)
+ *  6. Z-index — Capas de apilamiento
+ *  7. Transiciones — Curvas y duraciones estándar
+ *  8. Breakpoints — Solo para referencia (usar en media queries con @media)
+ *
+ * OVERRIDE: --color-primary cambiado a #22A722 (verde)
+ * OVERRIDE: --font-heading = Rubik, --font-body = Nunito Sans
+ */
+
+:root {
+
+  /* =============================================
+   * 1. COLORES
+   * =============================================
+   *
+   * Paleta optimizada para conversión e-commerce Colombia.
+   */
+
+  /* — Primario: Verde (override del amarillo original) */
+  --color-primary:          #22A722;
+  --color-primary-light:    #e8f5e8;  /* light tint para fondos: trust badges, category hover */
+  --color-primary-dark:     #1a8a1a;  /* hover state para elementos primarios */
+  --color-primary-subtle:   rgba(34, 167, 34, 0.12);
+  --color-primary-text:     #FFFFFF; /* texto sobre fondo verde */
+
+  /* — Secundario: Azul confianza */
+  --color-secondary:        #1A73E8;
+  --color-secondary-light:  #4A90E2;
+  --color-secondary-dark:   #1557B0;
+  --color-secondary-subtle: rgba(26, 115, 232, 0.10);
+
+  /* — Acento urgencia: Rojo ofertas/descuentos */
+  --color-accent:           #E53935;
+  --color-accent-light:     #EF5350;
+  --color-accent-dark:      #C62828;
+  --color-accent-subtle:    rgba(229, 57, 53, 0.10);
+
+  /* — Éxito / WhatsApp */
+  --color-success:          #25D366;
+  --color-success-dark:     #128C7E;
+
+  /* — Advertencia */
+  --color-warning:          #FF9800;
+  --color-warning-subtle:   rgba(255, 152, 0, 0.12);
+
+  /* — Backgrounds */
+  --color-bg:               #F8F9FA;   /* fondo principal — no blanco puro */
+  --color-bg-white:         #FFFFFF;
+  --color-surface:          rgba(255, 255, 255, 0.85); /* glassmorphism */
+  --color-surface-solid:    #FFFFFF;
+  --color-surface-raised:   rgba(255, 255, 255, 0.95);
+
+  /* — Texto */
+  --color-text-primary:     #1C1C1E;
+  --color-text-secondary:   #6B7280;
+  --color-text-tertiary:    #9CA3AF;
+  --color-text-inverse:     #FFFFFF;
+  --color-text-on-primary:  #FFFFFF;
+
+  /* — Bordes */
+  --color-border:           rgba(0, 0, 0, 0.08);
+  --color-border-strong:    rgba(0, 0, 0, 0.15);
+  --color-border-primary:   rgba(34, 167, 34, 0.40);
+
+  /* — Gradientes predefinidos */
+  --gradient-hero:          linear-gradient(135deg, #22A722 0%, #2EC42E 100%);
+  --gradient-secondary:     linear-gradient(135deg, #1A73E8 0%, #6C3AE8 100%);
+  --gradient-accent:        linear-gradient(135deg, #E53935 0%, #FF6B35 100%);
+  --gradient-dark:          linear-gradient(135deg, #1C1C1E 0%, #2D2D2F 100%);
+  --gradient-surface:       linear-gradient(145deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%);
+
+  /* — Gradientes de categorías (únicos por categoría) */
+  --gradient-cat-celulares:    linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
+  --gradient-cat-ropa:         linear-gradient(135deg, #F093FB 0%, #F5576C 100%);
+  --gradient-cat-hogar:        linear-gradient(135deg, #4FACFE 0%, #00F2FE 100%);
+  --gradient-cat-computadores: linear-gradient(135deg, #43E97B 0%, #38F9D7 100%);
+  --gradient-cat-gaming:       linear-gradient(135deg, #FA709A 0%, #FEE140 100%);
+  --gradient-cat-belleza:      linear-gradient(135deg, #FD79A8 0%, #FDCB6E 100%);
+  --gradient-cat-juguetes:     linear-gradient(135deg, #FDDB92 0%, #D1FDFF 100%);
+  --gradient-cat-herramientas: linear-gradient(135deg, #A8EDEA 0%, #FED6E3 100%);
+  --gradient-cat-mascotas:     linear-gradient(135deg, #96FBC4 0%, #F9F586 100%);
+  --gradient-cat-ofertas:      linear-gradient(135deg, #22A722 0%, #E53935 100%);
+
+  /* =============================================
+   * 2. TIPOGRAFÍA
+   * =============================================
+   */
+
+  /* — Familias (overridden via CSS vars from next/font) */
+  --font-heading: var(--font-rubik), system-ui, -apple-system, sans-serif;
+  --font-body:    var(--font-nunito-sans), system-ui, -apple-system, sans-serif;
+  --font-mono:    'Courier New', monospace;
+
+  /* — Escala de tamaños (base 16px mobile-first) */
+  --text-xs:   0.6875rem;   /* 11px — labels categoría */
+  --text-sm:   0.875rem;    /* 14px — mínimo absoluto */
+  --text-base: 1rem;        /* 16px — body base */
+  --text-md:   1.0625rem;   /* 17px */
+  --text-lg:   1.125rem;    /* 18px */
+  --text-xl:   1.25rem;     /* 20px */
+  --text-2xl:  1.5rem;      /* 24px */
+  --text-3xl:  1.875rem;    /* 30px */
+  --text-4xl:  2.25rem;     /* 36px */
+  --text-5xl:  3rem;        /* 48px */
+
+  /* — Pesos */
+  --font-normal:    400;
+  --font-medium:    500;
+  --font-semibold:  600;
+  --font-bold:      700;
+  --font-extrabold: 800;
+
+  /* — Line-heights */
+  --leading-tight:  1.2;
+  --leading-snug:   1.35;
+  --leading-normal: 1.5;
+  --leading-relaxed:1.65;
+
+  /* — Letter spacing */
+  --tracking-tight:  -0.02em;
+  --tracking-normal:  0em;
+  --tracking-wide:    0.04em;
+  --tracking-widest:  0.08em;
+
+  /* =============================================
+   * 3. ESPACIADO
+   * =============================================
+   * Escala de 4px. Uso: --space-{n} donde n*4 = px
+   */
+
+  --space-0:   0;
+  --space-1:   0.25rem;   /* 4px */
+  --space-2:   0.5rem;    /* 8px */
+  --space-3:   0.75rem;   /* 12px */
+  --space-4:   1rem;      /* 16px */
+  --space-5:   1.25rem;   /* 20px */
+  --space-6:   1.5rem;    /* 24px */
+  --space-7:   1.75rem;   /* 28px */
+  --space-8:   2rem;      /* 32px */
+  --space-10:  2.5rem;    /* 40px */
+  --space-12:  3rem;      /* 48px */
+  --space-14:  3.5rem;    /* 56px */
+  --space-16:  4rem;      /* 64px */
+  --space-20:  5rem;      /* 80px */
+  --space-24:  6rem;      /* 96px */
+
+  /* — Contenedores */
+  --container-sm:  540px;
+  --container-md:  768px;
+  --container-lg:  1024px;
+  --container-xl:  1280px;
+  --container-pad: var(--space-4); /* padding lateral mobile */
+
+  /* =============================================
+   * 4. RADIOS DE BORDE
+   * =============================================
+   */
+
+  --radius-sm:   6px;
+  --radius-md:   12px;
+  --radius-lg:   16px;
+  --radius-xl:   20px;
+  --radius-2xl:  24px;
+  --radius-3xl:  32px;
+  --radius-full: 9999px;
+
+  /* =============================================
+   * 5. SOMBRAS
+   * =============================================
+   * Multicapa para profundidad realista.
+   * Glassmorphism: combinar con backdrop-filter.
+   */
+
+  /* — Sombras neutras */
+  --shadow-xs:  0 1px 2px rgba(0,0,0,0.05);
+  --shadow-sm:  0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md:  0 4px 6px rgba(0,0,0,0.07), 0 2px 4px rgba(0,0,0,0.05);
+  --shadow-lg:  0 10px 15px rgba(0,0,0,0.08), 0 4px 6px rgba(0,0,0,0.05);
+  --shadow-xl:  0 20px 25px rgba(0,0,0,0.10), 0 10px 10px rgba(0,0,0,0.04);
+  --shadow-2xl: 0 25px 50px rgba(0,0,0,0.15);
+
+  /* — Sombras de color (para cards destacadas) */
+  --shadow-primary: 0 8px 20px rgba(34,167,34,0.30), 0 2px 6px rgba(34,167,34,0.15);
+  --shadow-accent:  0 8px 20px rgba(229,57,53,0.25), 0 2px 6px rgba(229,57,53,0.12);
+  --shadow-blue:    0 8px 20px rgba(26,115,232,0.25), 0 2px 6px rgba(26,115,232,0.12);
+
+  /* — Glassmorphism card */
+  --shadow-glass: 0 8px 32px rgba(0,0,0,0.08),
+                  0 2px 8px rgba(0,0,0,0.04),
+                  inset 0 1px 0 rgba(255,255,255,0.6);
+
+  /* — Elevación header */
+  --shadow-header: 0 2px 12px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.05);
+
+  /* — Blur glassmorphism */
+  --blur-sm:  blur(4px);
+  --blur-md:  blur(8px);
+  --blur-lg:  blur(16px);
+  --blur-xl:  blur(24px);
+
+  /* =============================================
+   * 6. Z-INDEX
+   * =============================================
+   */
+
+  --z-base:      0;
+  --z-raised:    10;
+  --z-dropdown:  100;
+  --z-sticky:    200;
+  --z-overlay:   300;
+  --z-modal:     400;
+  --z-toast:     500;
+  --z-floating:  600;   /* WhatsApp button, FABs */
+  --z-top:       9999;
+
+  /* =============================================
+   * 7. TRANSICIONES
+   * =============================================
+   */
+
+  --duration-fast:   150ms;
+  --duration-base:   250ms;
+  --duration-slow:   400ms;
+  --duration-slower: 600ms;
+
+  --ease-default: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-in:      cubic-bezier(0.4, 0, 1, 1);
+  --ease-out:     cubic-bezier(0, 0, 0.2, 1);
+  --ease-spring:  cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  --transition-base:      all var(--duration-base) var(--ease-default);
+  --transition-fast:      all var(--duration-fast) var(--ease-default);
+  --transition-transform: transform var(--duration-base) var(--ease-spring);
+  --transition-color:     color var(--duration-fast) var(--ease-default),
+                          background-color var(--duration-fast) var(--ease-default);
+
+  /* =============================================
+   * 8. TOUCH TARGETS
+   * =============================================
+   * Mínimo WCAG 2.5.5: 44x44px
+   */
+
+  --touch-target: 44px;
+
+  /* =============================================
+   * 9. LAYOUT
+   * =============================================
+   */
+
+  --header-height-mobile:  60px;
+  --header-height-desktop: 72px;
+  --bottom-nav-height:     64px;
+
+}

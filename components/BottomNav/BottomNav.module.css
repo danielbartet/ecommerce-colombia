@@ -1,0 +1,76 @@
+/* ---- BOTTOM NAVIGATION (mobile fixed) ---- */
+.nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: var(--bottom-nav-height);
+  background: var(--color-surface-solid);
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  z-index: var(--z-floating);
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.list {
+  display: flex;
+  width: 100%;
+}
+
+.item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: var(--space-2) var(--space-1);
+  text-decoration: none;
+  color: var(--color-text-secondary);
+  min-height: var(--touch-target);
+  transition: color var(--duration-fast) var(--ease-default);
+  -webkit-tap-highlight-color: transparent;
+  position: relative;
+}
+
+.itemActive {
+  color: var(--color-primary); /* #22A722 active icon/label */
+}
+
+.itemActive::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 32px;
+  height: 3px;
+  background: var(--color-primary); /* green indicator bar */
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+}
+
+.icon {
+  font-size: 1.3rem;
+  line-height: 1;
+  position: relative;
+}
+
+.iconRelative {
+  font-size: 1.3rem;
+  line-height: 1;
+  position: relative;
+  display: inline-flex;
+}
+
+.label {
+  font-size: var(--text-sm); /* 14px — minimum per design spec */
+  font-weight: var(--font-semibold);
+  line-height: 1;
+}
+
+@media (min-width: 768px) {
+  .nav {
+    display: none;
+  }
+}

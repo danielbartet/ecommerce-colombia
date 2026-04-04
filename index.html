@@ -1,0 +1,1865 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="MULTIOFERTAS.NET — Tu marketplace de confianza en Colombia. Ofertas del día, envío nacional y pago contra entrega en Bogotá.">
+  <meta name="theme-color" content="#FFD600">
+
+  <!-- Preconnect Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Design System -->
+  <link rel="stylesheet" href="design-system/tokens.css">
+  <link rel="stylesheet" href="design-system/components.css">
+
+  <title>MULTIOFERTAS.NET — Tu Marketplace de Confianza en Colombia</title>
+
+  <style>
+    /* =============================================
+     * PAGE-SPECIFIC STYLES
+     * ============================================= */
+
+    /* ---- HEADER ---- */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: var(--z-sticky);
+      background: var(--color-primary);
+      box-shadow: var(--shadow-header);
+      height: var(--header-height-mobile);
+    }
+
+    .site-header__inner {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      height: 100%;
+      padding-inline: var(--space-4);
+    }
+
+    /* Logo */
+    .site-logo {
+      display: flex;
+      align-items: center;
+      gap: var(--space-1);
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .site-logo__icon {
+      font-size: 1.25rem;
+      line-height: 1;
+    }
+
+    .site-logo__text {
+      font-family: var(--font-heading);
+      font-weight: var(--font-extrabold);
+      font-size: var(--text-base);
+      color: var(--color-primary-text);
+      letter-spacing: var(--tracking-tight);
+      line-height: 1.1;
+    }
+
+    .site-logo__text span {
+      color: var(--color-secondary);
+    }
+
+    /* Search */
+    .header-search {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .header-search .search-bar__input {
+      background: rgba(255,255,255,0.92);
+      border-color: transparent;
+      font-size: var(--text-sm);
+      height: 38px;
+      min-height: 38px;
+      padding: var(--space-2) var(--space-10) var(--space-2) var(--space-4);
+    }
+
+    .header-search .search-bar__btn {
+      width: 32px;
+      height: 32px;
+      background: var(--color-secondary);
+      color: white;
+    }
+
+    /* Header actions */
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-1);
+      flex-shrink: 0;
+    }
+
+    .header-action-btn {
+      position: relative;
+      width: var(--touch-target);
+      height: var(--touch-target);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      color: var(--color-primary-text);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      transition: background var(--duration-fast) var(--ease-default);
+    }
+
+    .header-action-btn:active {
+      background: rgba(0,0,0,0.08);
+    }
+
+    .header-action-btn svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    /* ---- MOBILE MENU (drawer lateral) ---- */
+    .mobile-menu-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: var(--z-overlay);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--duration-base) var(--ease-default);
+    }
+
+    .mobile-menu-overlay.is-open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: min(320px, 85vw);
+      background: var(--color-surface-solid);
+      z-index: var(--z-modal);
+      transform: translateX(-100%);
+      transition: transform var(--duration-base) var(--ease-default);
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .mobile-menu.is-open {
+      transform: translateX(0);
+    }
+
+    .mobile-menu__header {
+      background: var(--color-primary);
+      padding: var(--space-4) var(--space-5);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+
+    .mobile-menu__title {
+      font-family: var(--font-heading);
+      font-weight: var(--font-bold);
+      font-size: var(--text-lg);
+      color: var(--color-primary-text);
+    }
+
+    .mobile-menu__close {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.1);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      color: var(--color-primary-text);
+    }
+
+    .mobile-menu__nav {
+      padding: var(--space-4);
+      flex: 1;
+    }
+
+    .mobile-menu__item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      padding: var(--space-4);
+      border-radius: var(--radius-md);
+      font-size: var(--text-base);
+      font-weight: var(--font-medium);
+      color: var(--color-text-primary);
+      text-decoration: none;
+      transition: background var(--duration-fast) var(--ease-default);
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .mobile-menu__item:active {
+      background: var(--color-primary-subtle);
+    }
+
+    .mobile-menu__item-icon {
+      font-size: 1.3rem;
+      width: 28px;
+      text-align: center;
+    }
+
+    /* ---- HERO CAROUSEL ---- */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background: var(--color-primary);
+      aspect-ratio: 16 / 7;
+    }
+
+    @media (max-width: 479px) {
+      .hero {
+        aspect-ratio: 16 / 9;
+      }
+    }
+
+    .carousel {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .carousel__track {
+      display: flex;
+      height: 100%;
+      transition: transform var(--duration-slower) var(--ease-default);
+      will-change: transform;
+    }
+
+    .carousel__slide {
+      flex: 0 0 100%;
+      width: 100%;
+      height: 100%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .carousel__slide-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .carousel__slide-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: var(--space-5) var(--space-6);
+      max-width: 480px;
+    }
+
+    .carousel__badge {
+      display: inline-block;
+      background: var(--color-accent);
+      color: white;
+      font-family: var(--font-heading);
+      font-weight: var(--font-bold);
+      font-size: var(--text-xs);
+      letter-spacing: var(--tracking-widest);
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      margin-bottom: var(--space-3);
+    }
+
+    .carousel__title {
+      font-family: var(--font-heading);
+      font-weight: var(--font-extrabold);
+      font-size: clamp(1.5rem, 5vw, 2.75rem);
+      line-height: var(--leading-tight);
+      color: var(--color-text-inverse);
+      text-shadow: 0 2px 12px rgba(0,0,0,0.25);
+      margin-bottom: var(--space-2);
+    }
+
+    .carousel__subtitle {
+      font-size: clamp(0.875rem, 2.5vw, 1.125rem);
+      color: rgba(255,255,255,0.88);
+      margin-bottom: var(--space-5);
+      text-shadow: 0 1px 4px rgba(0,0,0,0.2);
+    }
+
+    /* Carousel dots */
+    .carousel__dots {
+      position: absolute;
+      bottom: var(--space-4);
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: var(--space-2);
+      z-index: 3;
+    }
+
+    .carousel__dot {
+      width: 8px;
+      height: 8px;
+      border-radius: var(--radius-full);
+      background: rgba(255,255,255,0.45);
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: all var(--duration-base) var(--ease-default);
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .carousel__dot.is-active {
+      width: 24px;
+      background: white;
+    }
+
+    /* ---- TRUST BADGES ---- */
+    .trust-section {
+      padding-block: var(--space-5);
+      background: var(--color-bg-white);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .trust-scroll {
+      display: flex;
+      gap: var(--space-3);
+      overflow-x: auto;
+      padding-inline: var(--space-4);
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      scroll-snap-type: x mandatory;
+    }
+
+    .trust-scroll::-webkit-scrollbar { display: none; }
+
+    .trust-card {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      min-width: 140px;
+      background: var(--color-surface);
+      backdrop-filter: var(--blur-sm);
+      -webkit-backdrop-filter: var(--blur-sm);
+      border: 1px solid var(--color-border-primary);
+      border-radius: var(--radius-xl);
+      padding: var(--space-4) var(--space-4);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-2);
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .trust-card__icon {
+      font-size: 1.75rem;
+      line-height: 1;
+    }
+
+    .trust-card__title {
+      font-family: var(--font-heading);
+      font-weight: var(--font-semibold);
+      font-size: var(--text-sm);
+      color: var(--color-text-primary);
+      line-height: 1.2;
+    }
+
+    .trust-card__subtitle {
+      font-size: var(--text-xs);
+      color: var(--color-text-secondary);
+      line-height: 1.3;
+    }
+
+    /* ---- CATEGORÍAS (Stories style) ---- */
+    .categories-section {
+      padding-block: var(--space-5);
+      background: var(--color-bg-white);
+    }
+
+    .categories-scroll {
+      display: flex;
+      gap: var(--space-4);
+      overflow-x: auto;
+      padding-inline: var(--space-4);
+      padding-block: var(--space-2);
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .categories-scroll::-webkit-scrollbar { display: none; }
+
+    .category-item {
+      flex: 0 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-2);
+      text-decoration: none;
+      -webkit-tap-highlight-color: transparent;
+      cursor: pointer;
+    }
+
+    .category-item:active .category-circle {
+      transform: scale(0.92);
+      outline: 3px solid var(--color-primary);
+      outline-offset: 2px;
+    }
+
+    .category-circle {
+      width: 72px;
+      height: 72px;
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.75rem;
+      transition: transform var(--duration-fast) var(--ease-spring),
+                  outline var(--duration-fast) var(--ease-default),
+                  box-shadow var(--duration-fast) var(--ease-default);
+      box-shadow: var(--shadow-md);
+    }
+
+    .category-label {
+      font-size: var(--text-xs);
+      font-weight: var(--font-bold);
+      color: var(--color-text-primary);
+      text-align: center;
+      max-width: 72px;
+      line-height: 1.3;
+    }
+
+    /* Category gradients */
+    .cat-celulares    { background: var(--gradient-cat-celulares); }
+    .cat-ropa         { background: var(--gradient-cat-ropa); }
+    .cat-hogar        { background: var(--gradient-cat-hogar); }
+    .cat-computadores { background: var(--gradient-cat-computadores); }
+    .cat-gaming       { background: var(--gradient-cat-gaming); }
+    .cat-belleza      { background: var(--gradient-cat-belleza); }
+    .cat-juguetes     { background: var(--gradient-cat-juguetes); }
+    .cat-herramientas { background: var(--gradient-cat-herramientas); }
+    .cat-mascotas     { background: var(--gradient-cat-mascotas); }
+    .cat-ofertas      { background: var(--gradient-cat-ofertas); }
+
+    /* ---- OFERTAS DEL DÍA ---- */
+    .ofertas-section {
+      padding-block: var(--space-6);
+    }
+
+    .ofertas-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-inline: var(--space-4);
+      margin-bottom: var(--space-4);
+      gap: var(--space-3);
+    }
+
+    .ofertas-title-group {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      flex-wrap: wrap;
+    }
+
+    .ofertas-title {
+      font-family: var(--font-heading);
+      font-weight: var(--font-bold);
+      font-size: var(--text-xl);
+      color: var(--color-text-primary);
+      line-height: 1;
+    }
+
+    /* Countdown */
+    .countdown {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: var(--color-accent);
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+    }
+
+    .countdown__unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      line-height: 1;
+    }
+
+    .countdown__num {
+      font-family: var(--font-heading);
+      font-weight: var(--font-bold);
+      font-size: var(--text-base);
+      color: white;
+      min-width: 22px;
+      text-align: center;
+    }
+
+    .countdown__sep {
+      font-family: var(--font-heading);
+      font-weight: var(--font-bold);
+      color: white;
+      font-size: var(--text-base);
+      align-self: flex-start;
+      padding-top: 1px;
+    }
+
+    /* Products grid */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-3);
+      padding-inline: var(--space-4);
+    }
+
+    /* ---- BENTO GRID (Populares) ---- */
+    .bento-section {
+      padding-block: var(--space-6);
+      background: var(--color-bg-white);
+    }
+
+    .bento-section .section__header {
+      padding-inline: var(--space-4);
+    }
+
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: auto;
+      gap: var(--space-3);
+      padding-inline: var(--space-4);
+    }
+
+    /* Primera card ocupa todo el ancho — hero product */
+    .bento-grid .card-product:first-child {
+      grid-column: 1 / -1;
+    }
+
+    .bento-grid .card-product:first-child .card-product__image-wrap {
+      aspect-ratio: 2 / 1;
+    }
+
+    .bento-grid .card-product:first-child .card-product__name {
+      font-size: var(--text-base);
+    }
+
+    .bento-grid .card-product:first-child .card-product__price-sale {
+      font-size: var(--text-xl);
+    }
+
+    /* ---- BANNER PROMOCIONAL ---- */
+    .promo-banner {
+      margin: var(--space-6) var(--space-4);
+      background: var(--gradient-secondary);
+      border-radius: var(--radius-2xl);
+      padding: var(--space-8) var(--space-6);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .promo-banner::before {
+      content: '';
+      position: absolute;
+      top: -40%;
+      right: -10%;
+      width: 200px;
+      height: 200px;
+      background: rgba(255,255,255,0.06);
+      border-radius: var(--radius-full);
+    }
+
+    .promo-banner::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      left: -5%;
+      width: 150px;
+      height: 150px;
+      background: rgba(255,255,255,0.05);
+      border-radius: var(--radius-full);
+    }
+
+    .promo-banner__eyebrow {
+      display: inline-block;
+      background: rgba(255,255,255,0.2);
+      color: white;
+      font-size: var(--text-xs);
+      font-weight: var(--font-semibold);
+      letter-spacing: var(--tracking-widest);
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: var(--radius-full);
+      margin-bottom: var(--space-3);
+    }
+
+    .promo-banner__title {
+      font-family: var(--font-heading);
+      font-weight: var(--font-extrabold);
+      font-size: clamp(1.4rem, 5vw, 2rem);
+      color: white;
+      line-height: var(--leading-tight);
+      margin-bottom: var(--space-2);
+    }
+
+    .promo-banner__desc {
+      color: rgba(255,255,255,0.82);
+      font-size: var(--text-sm);
+      margin-bottom: var(--space-6);
+      max-width: 320px;
+      margin-inline: auto;
+    }
+
+    /* ---- FOOTER ---- */
+    .site-footer {
+      background: var(--color-text-primary);
+      color: var(--color-text-inverse);
+      padding-block: var(--space-8);
+      padding-bottom: calc(var(--space-8) + var(--bottom-nav-height));
+    }
+
+    .footer-inner {
+      padding-inline: var(--space-4);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-6);
+    }
+
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+
+    .footer-logo__text {
+      font-family: var(--font-heading);
+      font-weight: var(--font-extrabold);
+      font-size: var(--text-lg);
+      color: var(--color-primary);
+    }
+
+    .footer-tagline {
+      font-size: var(--text-sm);
+      color: rgba(255,255,255,0.6);
+      line-height: var(--leading-relaxed);
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .footer-links__title {
+      font-family: var(--font-heading);
+      font-weight: var(--font-semibold);
+      font-size: var(--text-sm);
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+      letter-spacing: var(--tracking-widest);
+    }
+
+    .footer-links__list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3) var(--space-5);
+    }
+
+    .footer-links__item {
+      font-size: var(--text-sm);
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      transition: color var(--duration-fast) var(--ease-default);
+    }
+
+    .footer-links__item:active {
+      color: var(--color-primary);
+    }
+
+    /* Social */
+    .footer-social {
+      display: flex;
+      gap: var(--space-3);
+    }
+
+    .social-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform var(--duration-fast) var(--ease-spring);
+      font-size: 1.2rem;
+      text-decoration: none;
+    }
+
+    .social-btn--instagram { background: linear-gradient(135deg, #F09433 0%, #E6683C 25%, #DC2743 50%, #CC2366 75%, #BC1888 100%); }
+    .social-btn--facebook  { background: #1877F2; }
+    .social-btn--whatsapp  { background: #25D366; }
+
+    .social-btn:active {
+      transform: scale(0.92);
+    }
+
+    /* Copyright */
+    .footer-copy {
+      font-size: var(--text-xs);
+      color: rgba(255,255,255,0.35);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: var(--space-5);
+    }
+
+    /* ---- BOTTOM NAVIGATION (mobile) ---- */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: var(--bottom-nav-height);
+      background: var(--color-surface-solid);
+      border-top: 1px solid var(--color-border);
+      display: flex;
+      align-items: center;
+      z-index: var(--z-floating);
+      box-shadow: 0 -4px 16px rgba(0,0,0,0.08);
+    }
+
+    .bottom-nav__list {
+      display: flex;
+      width: 100%;
+    }
+
+    .bottom-nav__item {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      padding: var(--space-2) var(--space-1);
+      text-decoration: none;
+      color: var(--color-text-secondary);
+      min-height: var(--touch-target);
+      transition: color var(--duration-fast) var(--ease-default);
+      -webkit-tap-highlight-color: transparent;
+      position: relative;
+    }
+
+    .bottom-nav__item.is-active {
+      color: var(--color-secondary);
+    }
+
+    .bottom-nav__item.is-active::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 32px;
+      height: 3px;
+      background: var(--color-secondary);
+      border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+    }
+
+    .bottom-nav__icon {
+      font-size: 1.3rem;
+      line-height: 1;
+      position: relative;
+    }
+
+    .bottom-nav__label {
+      font-size: 10px;
+      font-weight: var(--font-semibold);
+      line-height: 1;
+    }
+
+    /* ---- FLOATING WHATSAPP ---- */
+    .whatsapp-fab {
+      position: fixed;
+      bottom: calc(var(--bottom-nav-height) + var(--space-4));
+      right: var(--space-4);
+      z-index: var(--z-floating);
+      width: 52px;
+      height: 52px;
+      background: var(--color-success);
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 16px rgba(37,211,102,0.40), 0 2px 6px rgba(0,0,0,0.15);
+      text-decoration: none;
+      transition: transform var(--duration-fast) var(--ease-spring);
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .whatsapp-fab:active {
+      transform: scale(0.9);
+    }
+
+    .whatsapp-fab svg {
+      width: 28px;
+      height: 28px;
+      fill: white;
+    }
+
+    /* Pulse animation */
+    @keyframes whatsapp-pulse {
+      0%   { box-shadow: 0 0 0 0 rgba(37,211,102,0.5); }
+      70%  { box-shadow: 0 0 0 12px rgba(37,211,102,0); }
+      100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); }
+    }
+
+    .whatsapp-fab {
+      animation: whatsapp-pulse 2.5s ease-out infinite;
+    }
+
+    /* =============================================
+     * RESPONSIVE
+     * ============================================= */
+
+    @media (min-width: 480px) {
+      .trust-card {
+        min-width: 160px;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .site-header {
+        height: var(--header-height-desktop);
+      }
+
+      .site-header__inner {
+        padding-inline: var(--space-6);
+        max-width: var(--container-xl);
+        margin-inline: auto;
+      }
+
+      .site-logo__text {
+        font-size: var(--text-xl);
+      }
+
+      .hero {
+        aspect-ratio: 16 / 5;
+      }
+
+      .trust-scroll {
+        justify-content: center;
+        padding-inline: var(--space-6);
+      }
+
+      .trust-card {
+        min-width: 180px;
+        flex-direction: row;
+        text-align: left;
+        gap: var(--space-3);
+      }
+
+      .products-grid {
+        grid-template-columns: repeat(3, 1fr);
+        padding-inline: var(--space-6);
+      }
+
+      .bento-grid {
+        grid-template-columns: repeat(3, 1fr);
+        padding-inline: var(--space-6);
+      }
+
+      .bento-grid .card-product:first-child {
+        grid-column: span 2;
+      }
+
+      .bento-grid .card-product:first-child .card-product__image-wrap {
+        aspect-ratio: 3 / 2;
+      }
+
+      .bottom-nav {
+        display: none;
+      }
+
+      .whatsapp-fab {
+        bottom: var(--space-6);
+        right: var(--space-6);
+        width: 58px;
+        height: 58px;
+      }
+
+      .site-footer {
+        padding-bottom: var(--space-8);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .products-grid {
+        grid-template-columns: repeat(4, 1fr);
+        padding-inline: var(--space-8);
+      }
+
+      .bento-grid {
+        grid-template-columns: repeat(4, 1fr);
+        padding-inline: var(--space-8);
+      }
+
+      .bento-grid .card-product:first-child {
+        grid-column: span 2;
+      }
+
+      .footer-inner {
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding-inline: var(--space-8);
+        max-width: var(--container-xl);
+        margin-inline: auto;
+      }
+
+      .footer-brand {
+        flex: 1;
+        min-width: 220px;
+      }
+
+      .footer-links {
+        flex: 1;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- ===================================================
+       MOBILE MENU (drawer lateral)
+       =================================================== -->
+  <div class="mobile-menu-overlay" id="menuOverlay" role="presentation" aria-hidden="true"></div>
+
+  <nav class="mobile-menu" id="mobileMenu" aria-label="Menú principal" aria-hidden="true">
+    <div class="mobile-menu__header">
+      <span class="mobile-menu__title">⚡ MULTIOFERTAS</span>
+      <button class="mobile-menu__close" id="closeMenu" aria-label="Cerrar menú">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M18 6L6 18M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+    <div class="mobile-menu__nav">
+      <a href="https://multiofertas.net" class="mobile-menu__item">
+        <span class="mobile-menu__item-icon">🏠</span> Inicio
+      </a>
+      <a href="https://multiofertas.net/buscar?cat=ofertas" class="mobile-menu__item">
+        <span class="mobile-menu__item-icon">⚡</span> Ofertas del Día
+      </a>
+      <a href="https://multiofertas.net/buscar?cat=celulares" class="mobile-menu__item">
+        <span class="mobile-menu__item-icon">📱</span> Celulares
+      </a>
+      <a href="https://multiofertas.net/buscar?cat=ropa" class="mobile-menu__item">
+        <span class="mobile-menu__item-icon">👗</span> Ropa y Moda
+      </a>
+      <a href="https://multiofertas.net/buscar?cat=hogar" class="mobile-menu__item">
+        <span class="mobile-menu__item-icon">🏠</span> Hogar
+      </a>
+      <a href="https://multiofertas.net/buscar?cat=computadores" class="mobile-menu__item">
+        <span class="mobile-menu__item-icon">💻</span> Computadores
+      </a>
+      <a href="https://multiofertas.net/buscar?cat=gaming" class="mobile-menu__item">
+        <span class="mobile-menu__item-icon">🎮</span> Gaming
+      </a>
+      <div class="divider"></div>
+      <a href="https://multiofertas.net/vender" class="mobile-menu__item">
+        <span class="mobile-menu__item-icon">🚀</span> Vende con nosotros
+      </a>
+      <a href="https://multiofertas.net/contacto" class="mobile-menu__item">
+        <span class="mobile-menu__item-icon">💬</span> Contacto / PQR
+      </a>
+    </div>
+  </nav>
+
+  <!-- ===================================================
+       1. HEADER STICKY
+       =================================================== -->
+  <header class="site-header" role="banner">
+    <div class="site-header__inner">
+
+      <!-- Hamburger -->
+      <button class="header-action-btn" id="openMenu" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+          <path d="M3 6h18M3 12h18M3 18h18"/>
+        </svg>
+      </button>
+
+      <!-- Logo -->
+      <a href="https://multiofertas.net" class="site-logo" aria-label="MULTIOFERTAS.NET — Inicio">
+        <span class="site-logo__icon" aria-hidden="true">⚡</span>
+        <span class="site-logo__text">MULTI<span>OFERTAS</span></span>
+      </a>
+
+      <!-- Search -->
+      <div class="header-search" role="search">
+        <div class="search-bar">
+          <label for="headerSearch" class="sr-only">Buscar productos</label>
+          <input
+            class="search-bar__input"
+            id="headerSearch"
+            type="search"
+            placeholder="Buscar productos..."
+            autocomplete="off"
+            spellcheck="false"
+          >
+          <button class="search-bar__btn" type="button" aria-label="Buscar">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Cart -->
+      <button class="header-action-btn" aria-label="Carrito de compras (0 productos)" id="cartBtn">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>
+        </svg>
+        <span class="badge--counter" id="cartCount" aria-live="polite">0</span>
+      </button>
+
+    </div>
+  </header>
+
+  <!-- ===================================================
+       2. HERO CAROUSEL
+       =================================================== -->
+  <section class="hero" aria-label="Ofertas destacadas">
+    <div class="carousel" id="heroCarousel">
+      <div class="carousel__track" id="carouselTrack">
+
+        <!-- Slide 1: Ofertas del Día -->
+        <div class="carousel__slide" role="group" aria-label="Slide 1 de 3">
+          <div class="carousel__slide-bg" style="background: linear-gradient(135deg, #E53935 0%, #FF6B35 50%, #FF9800 100%);"></div>
+          <div class="carousel__slide-content">
+            <span class="carousel__badge">Hoy únicamente</span>
+            <h1 class="carousel__title">Ofertas del Día<br>Hasta 70% OFF</h1>
+            <p class="carousel__subtitle">Los mejores precios en electrónica, ropa y más</p>
+            <a href="https://multiofertas.net/buscar?cat=ofertas" class="btn btn--primary btn--lg" style="box-shadow: 0 4px 20px rgba(0,0,0,0.25);">
+              Ver Ofertas ⚡
+            </a>
+          </div>
+        </div>
+
+        <!-- Slide 2: Envío Nacional -->
+        <div class="carousel__slide" role="group" aria-label="Slide 2 de 3">
+          <div class="carousel__slide-bg" style="background: linear-gradient(135deg, #1A73E8 0%, #6C3AE8 100%);"></div>
+          <div class="carousel__slide-content">
+            <span class="carousel__badge">Logística nacional</span>
+            <h1 class="carousel__title">Envío a Todo<br>Colombia 📦</h1>
+            <p class="carousel__subtitle">Llegamos a todos los departamentos del país con seguimiento en tiempo real</p>
+            <a href="https://multiofertas.net/envios" class="btn btn--ghost-light btn--lg">
+              Conocer más
+            </a>
+          </div>
+        </div>
+
+        <!-- Slide 3: Pago Contra Entrega -->
+        <div class="carousel__slide" role="group" aria-label="Slide 3 de 3">
+          <div class="carousel__slide-bg" style="background: linear-gradient(135deg, #FFD600 0%, #FF9800 100%);"></div>
+          <div class="carousel__slide-content">
+            <span class="carousel__badge" style="background: #1A73E8;">Solo Bogotá</span>
+            <h1 class="carousel__title" style="color: #1C1C1E;">Pago Contra<br>Entrega 🛵</h1>
+            <p class="carousel__subtitle" style="color: rgba(28,28,30,0.75);">Recibe tu pedido en Bogotá y paga cuando llegue. Sin riesgos.</p>
+            <a href="https://multiofertas.net/buscar" class="btn btn--secondary btn--lg">
+              Comprar ahora
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Dots indicadores -->
+      <div class="carousel__dots" role="tablist" aria-label="Indicadores de slide">
+        <button class="carousel__dot is-active" role="tab" aria-selected="true" aria-label="Slide 1" data-index="0"></button>
+        <button class="carousel__dot" role="tab" aria-selected="false" aria-label="Slide 2" data-index="1"></button>
+        <button class="carousel__dot" role="tab" aria-selected="false" aria-label="Slide 3" data-index="2"></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================
+       3. TRUST BADGES
+       =================================================== -->
+  <section class="trust-section" aria-label="Garantías y servicios">
+    <div class="trust-scroll" role="list">
+
+      <div class="trust-card" role="listitem">
+        <span class="trust-card__icon" aria-hidden="true">🛵</span>
+        <div>
+          <p class="trust-card__title">Pago Contra Entrega</p>
+          <p class="trust-card__subtitle">Solo Bogotá</p>
+        </div>
+      </div>
+
+      <div class="trust-card" role="listitem">
+        <span class="trust-card__icon" aria-hidden="true">📦</span>
+        <div>
+          <p class="trust-card__title">Envío Nacional</p>
+          <p class="trust-card__subtitle">A todo el país</p>
+        </div>
+      </div>
+
+      <div class="trust-card" role="listitem">
+        <span class="trust-card__icon" aria-hidden="true">🔄</span>
+        <div>
+          <p class="trust-card__title">Garantía de Devolución</p>
+          <p class="trust-card__subtitle">30 días</p>
+        </div>
+      </div>
+
+      <div class="trust-card" role="listitem">
+        <span class="trust-card__icon" aria-hidden="true">🔒</span>
+        <div>
+          <p class="trust-card__title">Pago Seguro</p>
+          <p class="trust-card__subtitle">SSL encriptado</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================================================
+       4. CATEGORÍAS (Stories style)
+       =================================================== -->
+  <section class="categories-section" aria-label="Categorías">
+    <div class="section__header" style="padding-inline: var(--space-4); margin-bottom: var(--space-3);">
+      <h2 class="section__title">Categorías</h2>
+    </div>
+
+    <div class="categories-scroll" role="list" aria-label="Navegar por categoría">
+
+      <a href="https://multiofertas.net/buscar?cat=celulares" class="category-item" role="listitem">
+        <div class="category-circle cat-celulares" aria-hidden="true">📱</div>
+        <span class="category-label">Celulares</span>
+      </a>
+
+      <a href="https://multiofertas.net/buscar?cat=ropa" class="category-item" role="listitem">
+        <div class="category-circle cat-ropa" aria-hidden="true">👗</div>
+        <span class="category-label">Ropa</span>
+      </a>
+
+      <a href="https://multiofertas.net/buscar?cat=hogar" class="category-item" role="listitem">
+        <div class="category-circle cat-hogar" aria-hidden="true">🏠</div>
+        <span class="category-label">Hogar</span>
+      </a>
+
+      <a href="https://multiofertas.net/buscar?cat=computadores" class="category-item" role="listitem">
+        <div class="category-circle cat-computadores" aria-hidden="true">💻</div>
+        <span class="category-label">Computadores</span>
+      </a>
+
+      <a href="https://multiofertas.net/buscar?cat=gaming" class="category-item" role="listitem">
+        <div class="category-circle cat-gaming" aria-hidden="true">🎮</div>
+        <span class="category-label">Gaming</span>
+      </a>
+
+      <a href="https://multiofertas.net/buscar?cat=belleza" class="category-item" role="listitem">
+        <div class="category-circle cat-belleza" aria-hidden="true">💄</div>
+        <span class="category-label">Belleza</span>
+      </a>
+
+      <a href="https://multiofertas.net/buscar?cat=juguetes" class="category-item" role="listitem">
+        <div class="category-circle cat-juguetes" aria-hidden="true">🧸</div>
+        <span class="category-label">Juguetes</span>
+      </a>
+
+      <a href="https://multiofertas.net/buscar?cat=herramientas" class="category-item" role="listitem">
+        <div class="category-circle cat-herramientas" aria-hidden="true">🔧</div>
+        <span class="category-label">Herramientas</span>
+      </a>
+
+      <a href="https://multiofertas.net/buscar?cat=mascotas" class="category-item" role="listitem">
+        <div class="category-circle cat-mascotas" aria-hidden="true">🐾</div>
+        <span class="category-label">Mascotas</span>
+      </a>
+
+      <a href="https://multiofertas.net/buscar?cat=ofertas" class="category-item" role="listitem">
+        <div class="category-circle cat-ofertas" aria-hidden="true">⚡</div>
+        <span class="category-label">Ofertas</span>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ===================================================
+       5. OFERTAS DEL DÍA — COUNTDOWN
+       =================================================== -->
+  <section class="ofertas-section" aria-labelledby="ofertasTitle">
+    <div class="ofertas-header">
+      <div class="ofertas-title-group">
+        <h2 class="ofertas-title" id="ofertasTitle">⚡ Ofertas del Día</h2>
+        <div class="countdown" role="timer" aria-live="off" aria-label="Tiempo restante de las ofertas">
+          <div class="countdown__unit">
+            <span class="countdown__num" id="countHH">05</span>
+          </div>
+          <span class="countdown__sep">:</span>
+          <div class="countdown__unit">
+            <span class="countdown__num" id="countMM">23</span>
+          </div>
+          <span class="countdown__sep">:</span>
+          <div class="countdown__unit">
+            <span class="countdown__num" id="countSS">47</span>
+          </div>
+        </div>
+      </div>
+      <a href="https://multiofertas.net/buscar?cat=ofertas" class="section__link" aria-label="Ver todas las ofertas del día">Ver todo</a>
+    </div>
+
+    <div class="products-grid" role="list" aria-label="Productos en oferta">
+
+      <!-- Producto 1 -->
+      <article class="card-product" role="listitem">
+        <div class="card-product__image-wrap">
+          <span class="badge badge--sale" style="position:absolute;top:8px;left:8px;z-index:1;">-55%</span>
+          <img src="https://picsum.photos/300/300?random=1" alt="Audífonos Bluetooth inalámbricos" loading="lazy" width="300" height="300">
+        </div>
+        <div class="card-product__body">
+          <p class="card-product__name line-clamp-2">Audífonos Bluetooth Pro 5.0 con cancelación de ruido</p>
+          <div class="card-product__pricing">
+            <span class="card-product__price-original">$185.000</span>
+            <span class="card-product__price-sale">$82.900</span>
+          </div>
+          <div class="card-product__btn">
+            <button class="btn btn--primary btn--sm btn--full" onclick="addToCart(this)" data-product="Audífonos Bluetooth Pro">Agregar</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Producto 2 -->
+      <article class="card-product" role="listitem">
+        <div class="card-product__image-wrap">
+          <span class="badge badge--sale" style="position:absolute;top:8px;left:8px;z-index:1;">-40%</span>
+          <img src="https://picsum.photos/300/300?random=2" alt="Smartwatch deportivo" loading="lazy" width="300" height="300">
+        </div>
+        <div class="card-product__body">
+          <p class="card-product__name line-clamp-2">Smartwatch Deportivo con GPS y monitor cardíaco</p>
+          <div class="card-product__pricing">
+            <span class="card-product__price-original">$320.000</span>
+            <span class="card-product__price-sale">$189.900</span>
+          </div>
+          <div class="card-product__btn">
+            <button class="btn btn--primary btn--sm btn--full" onclick="addToCart(this)" data-product="Smartwatch Deportivo">Agregar</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Producto 3 -->
+      <article class="card-product" role="listitem">
+        <div class="card-product__image-wrap">
+          <span class="badge badge--sale" style="position:absolute;top:8px;left:8px;z-index:1;">-60%</span>
+          <img src="https://picsum.photos/300/300?random=3" alt="Licuadora portátil USB" loading="lazy" width="300" height="300">
+        </div>
+        <div class="card-product__body">
+          <p class="card-product__name line-clamp-2">Licuadora Portátil USB recargable 450ml</p>
+          <div class="card-product__pricing">
+            <span class="card-product__price-original">$89.000</span>
+            <span class="card-product__price-sale">$35.900</span>
+          </div>
+          <div class="card-product__btn">
+            <button class="btn btn--primary btn--sm btn--full" onclick="addToCart(this)" data-product="Licuadora Portátil USB">Agregar</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Producto 4 -->
+      <article class="card-product" role="listitem">
+        <div class="card-product__image-wrap">
+          <span class="badge badge--sale" style="position:absolute;top:8px;left:8px;z-index:1;">-35%</span>
+          <img src="https://picsum.photos/300/300?random=4" alt="Cámara de seguridad WiFi" loading="lazy" width="300" height="300">
+        </div>
+        <div class="card-product__body">
+          <p class="card-product__name line-clamp-2">Cámara IP WiFi 1080p visión nocturna interior</p>
+          <div class="card-product__pricing">
+            <span class="card-product__price-original">$145.000</span>
+            <span class="card-product__price-sale">$94.900</span>
+          </div>
+          <div class="card-product__btn">
+            <button class="btn btn--primary btn--sm btn--full" onclick="addToCart(this)" data-product="Cámara IP WiFi">Agregar</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Producto 5 -->
+      <article class="card-product" role="listitem">
+        <div class="card-product__image-wrap">
+          <span class="badge badge--sale" style="position:absolute;top:8px;left:8px;z-index:1;">-70%</span>
+          <img src="https://picsum.photos/300/300?random=5" alt="Zapatos deportivos" loading="lazy" width="300" height="300">
+        </div>
+        <div class="card-product__body">
+          <p class="card-product__name line-clamp-2">Tenis deportivos Running ultra ligeros</p>
+          <div class="card-product__pricing">
+            <span class="card-product__price-original">$280.000</span>
+            <span class="card-product__price-sale">$84.000</span>
+          </div>
+          <div class="card-product__btn">
+            <button class="btn btn--primary btn--sm btn--full" onclick="addToCart(this)" data-product="Tenis deportivos Running">Agregar</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Producto 6 -->
+      <article class="card-product" role="listitem">
+        <div class="card-product__image-wrap">
+          <span class="badge badge--sale" style="position:absolute;top:8px;left:8px;z-index:1;">-45%</span>
+          <img src="https://picsum.photos/300/300?random=6" alt="Silla ergonómica de oficina" loading="lazy" width="300" height="300">
+        </div>
+        <div class="card-product__body">
+          <p class="card-product__name line-clamp-2">Silla ergonómica de oficina con soporte lumbar</p>
+          <div class="card-product__pricing">
+            <span class="card-product__price-original">$650.000</span>
+            <span class="card-product__price-sale">$357.500</span>
+          </div>
+          <div class="card-product__btn">
+            <button class="btn btn--primary btn--sm btn--full" onclick="addToCart(this)" data-product="Silla ergonómica">Agregar</button>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ===================================================
+       6. PRODUCTOS POPULARES — BENTO GRID
+       =================================================== -->
+  <section class="bento-section" aria-labelledby="popularesTitle">
+    <div class="section__header">
+      <h2 class="section__title" id="popularesTitle">🔥 Más Populares</h2>
+      <a href="https://multiofertas.net/buscar?sort=popular" class="section__link">Ver todo</a>
+    </div>
+
+    <div class="bento-grid" role="list" aria-label="Productos populares">
+
+      <!-- Hero product (ocupa 2 cols) -->
+      <article class="card-product" role="listitem">
+        <div class="card-product__image-wrap">
+          <span class="badge badge--hot" style="position:absolute;top:8px;left:8px;z-index:1;">HOT</span>
+          <span class="badge badge--new" style="position:absolute;top:8px;right:8px;z-index:1;">NUEVO</span>
+          <img src="https://picsum.photos/600/300?random=10" alt="iPhone recondicionado" loading="lazy" width="600" height="300">
+        </div>
+        <div class="card-product__body">
+          <p class="card-product__name line-clamp-2">Smartphone Samsung Galaxy A55 5G 256GB — Reacondicionado certificado</p>
+          <div class="card-product__pricing">
+            <span class="card-product__price-original">$2.100.000</span>
+            <span class="card-product__price-sale">$1.249.900</span>
+          </div>
+          <div class="card-product__btn" style="display:flex;gap:8px;">
+            <button class="btn btn--primary btn--sm" style="flex:1;" onclick="addToCart(this)" data-product="Samsung Galaxy A55">Agregar</button>
+            <a href="https://multiofertas.net/producto/samsung-galaxy-a55" class="btn btn--ghost btn--sm" style="flex:1;">Ver detalle</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Producto 2 -->
+      <article class="card-product" role="listitem">
+        <div class="card-product__image-wrap">
+          <span class="badge badge--sale" style="position:absolute;top:8px;left:8px;z-index:1;">-30%</span>
+          <img src="https://picsum.photos/300/300?random=11" alt="Tablet educativa" loading="lazy" width="300" height="300">
+        </div>
+        <div class="card-product__body">
+          <p class="card-product__name line-clamp-2">Tablet educativa 10" Android 13 con funda</p>
+          <div class="card-product__pricing">
+            <span class="card-product__price-original">$589.000</span>
+            <span class="card-product__price-sale">$412.300</span>
+          </div>
+          <div class="card-product__btn">
+            <button class="btn btn--primary btn--sm btn--full" onclick="addToCart(this)" data-product="Tablet educativa 10">Agregar</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Producto 3 -->
+      <article class="card-product" role="listitem">
+        <div class="card-product__image-wrap">
+          <span class="badge badge--free" style="position:absolute;top:8px;left:8px;z-index:1;">ENVÍO</span>
+          <img src="https://picsum.photos/300/300?random=12" alt="Set cocina completo" loading="lazy" width="300" height="300">
+        </div>
+        <div class="card-product__body">
+          <p class="card-product__name line-clamp-2">Set de ollas antiadherente 7 piezas cocina</p>
+          <div class="card-product__pricing">
+            <span class="card-product__price-original">$349.000</span>
+            <span class="card-product__price-sale">$245.000</span>
+          </div>
+          <div class="card-product__btn">
+            <button class="btn btn--primary btn--sm btn--full" onclick="addToCart(this)" data-product="Set de ollas antiadherente">Agregar</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Producto 4 -->
+      <article class="card-product" role="listitem">
+        <div class="card-product__image-wrap">
+          <span class="badge badge--sale" style="position:absolute;top:8px;left:8px;z-index:1;">-25%</span>
+          <img src="https://picsum.photos/300/300?random=13" alt="Perfume importado" loading="lazy" width="300" height="300">
+        </div>
+        <div class="card-product__body">
+          <p class="card-product__name line-clamp-2">Perfume importado Unisex 100ml colección 2024</p>
+          <div class="card-product__pricing">
+            <span class="card-product__price-original">$220.000</span>
+            <span class="card-product__price-sale">$165.000</span>
+          </div>
+          <div class="card-product__btn">
+            <button class="btn btn--primary btn--sm btn--full" onclick="addToCart(this)" data-product="Perfume importado Unisex">Agregar</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Producto 5 -->
+      <article class="card-product" role="listitem">
+        <div class="card-product__image-wrap">
+          <span class="badge badge--hot" style="position:absolute;top:8px;left:8px;z-index:1;">TOP</span>
+          <img src="https://picsum.photos/300/300?random=14" alt="Mouse gamer inalámbrico" loading="lazy" width="300" height="300">
+        </div>
+        <div class="card-product__body">
+          <p class="card-product__name line-clamp-2">Mouse Gamer inalámbrico RGB 7200 DPI</p>
+          <div class="card-product__pricing">
+            <span class="card-product__price-original">$175.000</span>
+            <span class="card-product__price-sale">$129.900</span>
+          </div>
+          <div class="card-product__btn">
+            <button class="btn btn--primary btn--sm btn--full" onclick="addToCart(this)" data-product="Mouse Gamer RGB">Agregar</button>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ===================================================
+       7. BANNER PROMOCIONAL — Vende con nosotros
+       =================================================== -->
+  <div class="container">
+    <div class="promo-banner" role="complementary" aria-label="Vende en MULTIOFERTAS.NET">
+      <span class="promo-banner__eyebrow">Para vendedores</span>
+      <h2 class="promo-banner__title">Vende en<br>MULTIOFERTAS.NET</h2>
+      <p class="promo-banner__desc">Llega a miles de compradores en Colombia. Publicación gratis, pago seguro y soporte dedicado.</p>
+      <a href="https://multiofertas.net/vender" class="btn btn--primary btn--lg">
+        Empezar a Vender 🚀
+      </a>
+    </div>
+  </div>
+
+  <!-- ===================================================
+       8. FOOTER
+       =================================================== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+
+      <!-- Brand -->
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <span aria-hidden="true" style="font-size:1.4rem;">⚡</span>
+          <span class="footer-logo__text">MULTIOFERTAS.NET</span>
+        </div>
+        <p class="footer-tagline">Tu marketplace de confianza en Colombia.<br>Compramos y vendemos con garantía.</p>
+
+        <!-- Redes sociales -->
+        <div class="footer-social" aria-label="Redes sociales">
+          <a href="https://instagram.com/multiofertas.net" class="social-btn social-btn--instagram" aria-label="Instagram de MULTIOFERTAS" target="_blank" rel="noopener noreferrer">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
+            </svg>
+          </a>
+          <a href="https://facebook.com/multiofertas.net" class="social-btn social-btn--facebook" aria-label="Facebook de MULTIOFERTAS" target="_blank" rel="noopener noreferrer">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </a>
+          <a href="https://wa.me/573001234567" class="social-btn social-btn--whatsapp" aria-label="WhatsApp de MULTIOFERTAS: +57 300 123 4567" target="_blank" rel="noopener noreferrer">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Links -->
+      <div class="footer-links">
+        <p class="footer-links__title">Información</p>
+        <nav class="footer-links__list" aria-label="Links del footer">
+          <a href="https://multiofertas.net/privacidad" class="footer-links__item">Política de Privacidad</a>
+          <a href="https://multiofertas.net/terminos" class="footer-links__item">Términos de Uso</a>
+          <a href="https://multiofertas.net/contacto" class="footer-links__item">Contacto</a>
+          <a href="https://multiofertas.net/pqr" class="footer-links__item">PQR</a>
+          <a href="https://multiofertas.net/vender" class="footer-links__item">Vende con Nosotros</a>
+          <a href="https://multiofertas.net/envios" class="footer-links__item">Política de Envíos</a>
+        </nav>
+      </div>
+
+      <!-- Copyright -->
+      <div class="footer-copy" style="width:100%;">
+        <p>© 2024 MULTIOFERTAS.NET — Todos los derechos reservados. Colombia 🇨🇴</p>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ===================================================
+       9. FLOATING WHATSAPP BUTTON
+       =================================================== -->
+  <a
+    href="https://wa.me/573001234567?text=Hola%2C%20tengo%20una%20pregunta%20sobre%20un%20producto%20en%20MULTIOFERTAS.NET"
+    class="whatsapp-fab"
+    aria-label="Contactar por WhatsApp al +57 300 123 4567"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
+    </svg>
+  </a>
+
+  <!-- ===================================================
+       BOTTOM NAVIGATION (mobile fixed)
+       =================================================== -->
+  <nav class="bottom-nav" aria-label="Navegación principal">
+    <ul class="bottom-nav__list" role="list">
+      <li>
+        <a href="https://multiofertas.net" class="bottom-nav__item is-active" aria-current="page">
+          <span class="bottom-nav__icon" aria-hidden="true">🏠</span>
+          <span class="bottom-nav__label">Inicio</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://multiofertas.net/buscar" class="bottom-nav__item">
+          <span class="bottom-nav__icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+            </svg>
+          </span>
+          <span class="bottom-nav__label">Buscar</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://multiofertas.net/buscar?cat=ofertas" class="bottom-nav__item">
+          <span class="bottom-nav__icon" aria-hidden="true">⚡</span>
+          <span class="bottom-nav__label">Ofertas</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://multiofertas.net/carrito" class="bottom-nav__item" id="bottomCartBtn">
+          <span class="bottom-nav__icon" style="position:relative;" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>
+            </svg>
+            <span class="badge--counter" id="bottomCartCount" style="font-size:9px;min-width:16px;height:16px;">0</span>
+          </span>
+          <span class="bottom-nav__label">Carrito</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://multiofertas.net/cuenta" class="bottom-nav__item">
+          <span class="bottom-nav__icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+            </svg>
+          </span>
+          <span class="bottom-nav__label">Cuenta</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- ===================================================
+       JAVASCRIPT — Vanilla, sin dependencias
+       =================================================== -->
+  <script>
+    'use strict';
+
+    /* =============================================
+     * 1. CARRUSEL HERO
+     * ============================================= */
+    (function () {
+      const track   = document.getElementById('carouselTrack');
+      const dots    = document.querySelectorAll('.carousel__dot');
+      const total   = dots.length;
+      let current   = 0;
+      let autoTimer = null;
+      let startX    = 0;
+      let isDragging = false;
+
+      function goTo(index) {
+        current = (index + total) % total;
+        track.style.transform = `translateX(-${current * 100}%)`;
+        dots.forEach((dot, i) => {
+          dot.classList.toggle('is-active', i === current);
+          dot.setAttribute('aria-selected', i === current ? 'true' : 'false');
+        });
+      }
+
+      function next() { goTo(current + 1); }
+
+      function startAuto() {
+        stopAuto();
+        autoTimer = setInterval(next, 4000);
+      }
+
+      function stopAuto() {
+        if (autoTimer) clearInterval(autoTimer);
+        autoTimer = null;
+      }
+
+      // Dot clicks
+      dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+          goTo(parseInt(dot.dataset.index, 10));
+          stopAuto();
+          startAuto();
+        });
+      });
+
+      // Touch/swipe support
+      const carousel = document.getElementById('heroCarousel');
+
+      carousel.addEventListener('touchstart', e => {
+        startX = e.touches[0].clientX;
+        isDragging = true;
+        stopAuto();
+      }, { passive: true });
+
+      carousel.addEventListener('touchend', e => {
+        if (!isDragging) return;
+        const diff = startX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 40) {
+          diff > 0 ? next() : goTo(current - 1);
+        }
+        isDragging = false;
+        startAuto();
+      }, { passive: true });
+
+      // Keyboard support
+      carousel.addEventListener('keydown', e => {
+        if (e.key === 'ArrowLeft')  { goTo(current - 1); stopAuto(); startAuto(); }
+        if (e.key === 'ArrowRight') { next(); stopAuto(); startAuto(); }
+      });
+
+      // Pause on focus/visibility
+      document.addEventListener('visibilitychange', () => {
+        document.hidden ? stopAuto() : startAuto();
+      });
+
+      startAuto();
+    }());
+
+    /* =============================================
+     * 2. COUNTDOWN TIMER
+     * ============================================= */
+    (function () {
+      const hhEl = document.getElementById('countHH');
+      const mmEl = document.getElementById('countMM');
+      const ssEl = document.getElementById('countSS');
+
+      if (!hhEl) return;
+
+      // Target: end of current day (midnight Colombia time, UTC-5)
+      function getTargetTime() {
+        const now = new Date();
+        // Set to next midnight
+        const target = new Date(now);
+        target.setHours(23, 59, 59, 999);
+        return target.getTime();
+      }
+
+      let targetTime = getTargetTime();
+
+      function pad(n) { return String(n).padStart(2, '0'); }
+
+      function tick() {
+        const now  = Date.now();
+        let   diff = Math.max(0, targetTime - now);
+
+        if (diff <= 0) {
+          // Reset to next day
+          targetTime = getTargetTime() + 86400000;
+          diff = targetTime - Date.now();
+        }
+
+        const totalSecs = Math.floor(diff / 1000);
+        const hh = Math.floor(totalSecs / 3600);
+        const mm = Math.floor((totalSecs % 3600) / 60);
+        const ss = totalSecs % 60;
+
+        hhEl.textContent = pad(hh);
+        mmEl.textContent = pad(mm);
+        ssEl.textContent = pad(ss);
+      }
+
+      tick();
+      setInterval(tick, 1000);
+    }());
+
+    /* =============================================
+     * 3. MENÚ MOBILE (drawer)
+     * ============================================= */
+    (function () {
+      const openBtn  = document.getElementById('openMenu');
+      const closeBtn = document.getElementById('closeMenu');
+      const menu     = document.getElementById('mobileMenu');
+      const overlay  = document.getElementById('menuOverlay');
+
+      function openMenu() {
+        menu.classList.add('is-open');
+        overlay.classList.add('is-open');
+        menu.setAttribute('aria-hidden', 'false');
+        openBtn.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+        // Focus trap: focus first focusable element
+        setTimeout(() => {
+          const firstFocusable = menu.querySelector('a, button');
+          if (firstFocusable) firstFocusable.focus();
+        }, 50);
+      }
+
+      function closeMenu() {
+        menu.classList.remove('is-open');
+        overlay.classList.remove('is-open');
+        menu.setAttribute('aria-hidden', 'true');
+        openBtn.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+        openBtn.focus();
+      }
+
+      openBtn.addEventListener('click', openMenu);
+      closeBtn.addEventListener('click', closeMenu);
+      overlay.addEventListener('click', closeMenu);
+
+      // ESC key
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && menu.classList.contains('is-open')) closeMenu();
+      });
+    }());
+
+    /* =============================================
+     * 4. CARRITO — Badge contador
+     * ============================================= */
+    (function () {
+      let cartCount = 0;
+      const headerBadge = document.getElementById('cartCount');
+      const bottomBadge = document.getElementById('bottomCartCount');
+      const cartBtn     = document.getElementById('cartBtn');
+
+      function updateCart(n) {
+        cartCount = Math.max(0, n);
+        const display = cartCount > 99 ? '99+' : String(cartCount);
+
+        [headerBadge, bottomBadge].forEach(badge => {
+          if (!badge) return;
+          badge.textContent = display;
+          badge.style.display = cartCount === 0 ? 'none' : 'flex';
+        });
+
+        if (cartBtn) {
+          cartBtn.setAttribute('aria-label', `Carrito de compras (${cartCount} producto${cartCount !== 1 ? 's' : ''})`);
+        }
+      }
+
+      // Inicializar
+      updateCart(0);
+
+      // Exponer función globalmente para los botones "Agregar"
+      window.addToCart = function (btn) {
+        const productName = btn.getAttribute('data-product') || 'Producto';
+
+        // Feedback visual en el botón
+        const originalText = btn.textContent;
+        btn.textContent = '✓ Agregado';
+        btn.style.background = 'var(--color-success)';
+        btn.disabled = true;
+
+        setTimeout(() => {
+          btn.textContent = originalText;
+          btn.style.background = '';
+          btn.disabled = false;
+        }, 1500);
+
+        // Incrementar contador
+        updateCart(cartCount + 1);
+
+        // Bounce animation en badge
+        [headerBadge, bottomBadge].forEach(badge => {
+          if (!badge) return;
+          badge.style.transform = 'scale(1.4)';
+          setTimeout(() => { badge.style.transform = ''; }, 200);
+        });
+      };
+    }());
+
+    /* =============================================
+     * 5. SEARCH — Submit básico
+     * ============================================= */
+    (function () {
+      const input = document.getElementById('headerSearch');
+      if (!input) return;
+
+      function doSearch() {
+        const q = input.value.trim();
+        if (q) {
+          window.location.href = `https://multiofertas.net/buscar?q=${encodeURIComponent(q)}`;
+        }
+      }
+
+      input.addEventListener('keydown', e => {
+        if (e.key === 'Enter') doSearch();
+      });
+
+      const searchBtn = input.closest('.search-bar')?.querySelector('.search-bar__btn');
+      if (searchBtn) searchBtn.addEventListener('click', doSearch);
+    }());
+
+    /* =============================================
+     * 6. INTERSECTION OBSERVER — Lazy fade-in cards
+     * ============================================= */
+    (function () {
+      if (!('IntersectionObserver' in window)) return;
+
+      const style = document.createElement('style');
+      style.textContent = `
+        .card-product, .trust-card, .promo-banner {
+          opacity: 0;
+          transform: translateY(16px);
+          transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+        .card-product.is-visible, .trust-card.is-visible, .promo-banner.is-visible {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      `;
+      document.head.appendChild(style);
+
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+      document.querySelectorAll('.card-product, .trust-card, .promo-banner').forEach(el => {
+        observer.observe(el);
+      });
+    }());
+  </script>
+
+</body>
+</html>

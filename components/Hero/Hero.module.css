@@ -1,0 +1,156 @@
+/* ---- HERO CAROUSEL ---- */
+.hero {
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: visible;
+  background: linear-gradient(160deg, #0a3d0a 0%, #1a6b1a 40%, #22A722 75%, #4caf4c 100%);
+}
+
+.carousel {
+  position: relative;
+  width: 100%;
+  outline: none;
+  aspect-ratio: 16 / 9;
+}
+
+@media (min-width: 480px) {
+  .carousel {
+    aspect-ratio: 16 / 7;
+  }
+}
+
+@media (min-width: 768px) {
+  .carousel {
+    aspect-ratio: 16 / 5;
+  }
+}
+
+.track {
+  display: flex;
+  height: 100%;
+  transition: transform var(--duration-slower) var(--ease-default);
+  will-change: transform;
+}
+
+.slide {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.slideContent {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: var(--space-5) var(--space-6);
+  max-width: 520px;
+}
+
+.badge {
+  display: inline-block;
+  background: var(--color-accent); /* #EF4444 — discount badge red */
+  color: white;
+  font-family: var(--font-heading);
+  font-weight: var(--font-bold);
+  font-size: var(--text-sm); /* 14px minimum */
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 4px;
+  margin-bottom: var(--space-3);
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-weight: var(--font-extrabold);
+  font-size: clamp(2rem, 6vw, 3.5rem); /* minimum 32px per spec */
+  line-height: var(--leading-tight);
+  color: var(--color-text-inverse);
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+  margin-bottom: var(--space-3);
+}
+
+.subtitle {
+  font-size: clamp(0.875rem, 2.5vw, 1.125rem);
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: var(--space-5);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+  line-height: var(--leading-normal);
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  color: var(--color-primary);
+  border: none;
+  font-family: var(--font-heading);
+  font-weight: var(--font-semibold);
+  font-size: var(--text-base);
+  padding: 0 var(--space-6);
+  min-height: var(--touch-target);
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background var(--duration-fast) var(--ease-default),
+              transform var(--duration-fast) var(--ease-default);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+.cta:hover {
+  background: #f0f0f0;
+  transform: translateY(-2px);
+}
+
+.cta:focus-visible {
+  outline: 2px solid white;
+  outline-offset: 2px;
+}
+
+.cta:active {
+  transform: scale(0.97);
+}
+
+/* Dots */
+.dots {
+  position: absolute;
+  bottom: var(--space-4);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: var(--space-2);
+  z-index: 3;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.45);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: all var(--duration-base) var(--ease-default);
+  -webkit-tap-highlight-color: transparent;
+  min-width: 8px;
+  min-height: 8px;
+}
+
+.dot:hover {
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.dot:focus-visible {
+  outline: 2px solid white;
+  outline-offset: 2px;
+}
+
+.dotActive {
+  width: 24px;
+  background: white;
+}
