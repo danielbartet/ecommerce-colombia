@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import { Rubik, Nunito_Sans } from 'next/font/google';
+import Script from 'next/script';
 import './globals.css';
 
 const rubik = Rubik({
@@ -33,7 +34,24 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es-CO" className={`${rubik.variable} ${nunitoSans.variable}`}>
-      <body>{children}</body>
+      <body>
+        {children}
+        <Script id="chatwoot" strategy="afterInteractive">{`
+          (function(d,t) {
+            var BASE_URL="https://multicode-inbox.omnichats.ai";
+            var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+            g.src=BASE_URL+"/packs/js/sdk.js";
+            g.async = true;
+            s.parentNode.insertBefore(g,s);
+            g.onload=function(){
+              window.chatwootSDK.run({
+                websiteToken: 'xBx6RrnSbHqDANvBPVxKkhiP',
+                baseUrl: BASE_URL
+              })
+            }
+          })(document,"script");
+        `}</Script>
+      </body>
     </html>
   );
 }

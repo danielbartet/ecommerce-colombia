@@ -6,7 +6,6 @@ import OfertasDelDia from '@/components/OfertasDelDia/OfertasDelDia';
 import PopularProducts from '@/components/PopularProducts/PopularProducts';
 import TrustBadges from '@/components/TrustBadges/TrustBadges';
 import Footer from '@/components/Footer/Footer';
-import WhatsAppFab from '@/components/WhatsAppFab/WhatsAppFab';
 import BottomNav from '@/components/BottomNav/BottomNav';
 
 export default function Page() {
@@ -24,7 +23,6 @@ export default function Page() {
         </div>
       </main>
       <Footer />
-      <WhatsAppFab />
       <BottomNav />
     </>
   );
