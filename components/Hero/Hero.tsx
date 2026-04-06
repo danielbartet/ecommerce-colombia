@@ -165,19 +165,6 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Dissolve fade into page background */}
-      <div
-        style={{
-          position: 'absolute',
-          bottom: 0,
-          left: 0,
-          right: 0,
-          height: '112px',
-          background: 'linear-gradient(to bottom, transparent, #F0FAF0)',
-          pointerEvents: 'none',
-          zIndex: 10,
-        }}
-      />
     </section>
   );
 }

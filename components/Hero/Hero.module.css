@@ -3,7 +3,7 @@
   position: relative;
   overflow-x: hidden;
   overflow-y: visible;
-  background: linear-gradient(160deg, #0a3d0a 0%, #1a6b1a 40%, #22A722 75%, #4caf4c 100%);
+  background: #ffffff;
 }
 
 .carousel {
