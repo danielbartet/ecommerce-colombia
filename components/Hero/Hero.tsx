@@ -10,8 +10,8 @@ const SLIDES = [
     subtitle: 'Los mejores precios en electrónica, ropa y más',
     ctaText: 'Ver Ofertas ⚡',
     ctaHref: 'https://multiofertas.net/buscar?cat=ofertas',
-    image: 'https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=520&h=400&fit=crop&auto=format&q=80',
-    imageAlt: 'Bolsas de compras coloridas con ofertas',
+    image: 'https://images.unsplash.com/photo-1512909006721-3d6018887383?w=1280&h=500&fit=crop&auto=format&q=80',
+    imageAlt: 'Paquetes de regalo coloridos',
   },
   {
     badge: 'Logística nacional',
@@ -19,8 +19,8 @@ const SLIDES = [
     subtitle: 'Llegamos a todos los departamentos del país con seguimiento en tiempo real',
     ctaText: 'Conocer más',
     ctaHref: 'https://multiofertas.net/envios',
-    image: 'https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=520&h=400&fit=crop&auto=format&q=80',
-    imageAlt: 'Caja de envío con logotipo de entrega',
+    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1280&h=500&fit=crop&auto=format&q=80',
+    imageAlt: 'Moto de mensajería con paquete de envío',
   },
   {
     badge: 'Solo Bogotá',
@@ -28,8 +28,8 @@ const SLIDES = [
     subtitle: 'Recibe tu pedido en Bogotá y paga cuando llegue. Sin riesgos.',
     ctaText: 'Comprar ahora',
     ctaHref: 'https://multiofertas.net/buscar',
-    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=520&h=400&fit=crop&auto=format&q=80',
-    imageAlt: 'Compra segura en línea con tarjeta',
+    image: 'https://images.unsplash.com/photo-1580674684081-7617fbf3d745?w=1280&h=500&fit=crop&auto=format&q=80',
+    imageAlt: 'Persona entregando paquete a otra persona',
   },
 ];
 
