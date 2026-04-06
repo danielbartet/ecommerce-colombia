@@ -119,28 +119,28 @@ export default function Hero() {
               aria-label={`Slide ${i + 1} de ${total}`}
               aria-hidden={i !== current}
             >
+              {/* Background image */}
+              <img
+                src={slide.image}
+                alt=""
+                aria-hidden="true"
+                className={styles.slideBg}
+                onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+              />
+              {/* Dark overlay for text readability */}
+              <div className={styles.slideOverlay} />
               {/* Content */}
-              <div className={styles.slideInner}>
-                <div className={styles.slideContent}>
-                  <span className={styles.badge}>{slide.badge}</span>
-                  <h1 className={styles.title}>
-                    {slide.title.split('\n').map((line, j) => (
-                      <span key={j}>{line}{j < slide.title.split('\n').length - 1 && <br />}</span>
-                    ))}
-                  </h1>
-                  <p className={styles.subtitle}>{slide.subtitle}</p>
-                  <a href={slide.ctaHref} className={styles.cta}>
-                    {slide.ctaText}
-                  </a>
-                </div>
-                <div className={styles.slideImage}>
-                  <img
-                    src={slide.image}
-                    alt={slide.imageAlt}
-                    style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '12px' }}
-                    onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
-                  />
-                </div>
+              <div className={styles.slideContent}>
+                <span className={styles.badge}>{slide.badge}</span>
+                <h1 className={styles.title}>
+                  {slide.title.split('\n').map((line, j) => (
+                    <span key={j}>{line}{j < slide.title.split('\n').length - 1 && <br />}</span>
+                  ))}
+                </h1>
+                <p className={styles.subtitle}>{slide.subtitle}</p>
+                <a href={slide.ctaHref} className={styles.cta}>
+                  {slide.ctaText}
+                </a>
               </div>
             </div>
           ))}
