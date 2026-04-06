@@ -10,6 +10,8 @@ const SLIDES = [
     subtitle: 'Los mejores precios en electrónica, ropa y más',
     ctaText: 'Ver Ofertas ⚡',
     ctaHref: 'https://multiofertas.net/buscar?cat=ofertas',
+    image: 'https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=520&h=400&fit=crop&auto=format&q=80',
+    imageAlt: 'Bolsas de compras coloridas con ofertas',
   },
   {
     badge: 'Logística nacional',
@@ -17,6 +19,8 @@ const SLIDES = [
     subtitle: 'Llegamos a todos los departamentos del país con seguimiento en tiempo real',
     ctaText: 'Conocer más',
     ctaHref: 'https://multiofertas.net/envios',
+    image: 'https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=520&h=400&fit=crop&auto=format&q=80',
+    imageAlt: 'Caja de envío con logotipo de entrega',
   },
   {
     badge: 'Solo Bogotá',
@@ -24,6 +28,8 @@ const SLIDES = [
     subtitle: 'Recibe tu pedido en Bogotá y paga cuando llegue. Sin riesgos.',
     ctaText: 'Comprar ahora',
     ctaHref: 'https://multiofertas.net/buscar',
+    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=520&h=400&fit=crop&auto=format&q=80',
+    imageAlt: 'Compra segura en línea con tarjeta',
   },
 ];
 
@@ -114,20 +120,27 @@ export default function Hero() {
               aria-hidden={i !== current}
             >
               {/* Content */}
-              <div className={styles.slideContent}>
-                <span className={styles.badge}>{slide.badge}</span>
-                <h1 className={styles.title}>
-                  {slide.title.split('\n').map((line, j) => (
-                    <span key={j}>{line}{j < slide.title.split('\n').length - 1 && <br />}</span>
-                  ))}
-                </h1>
-                <p className={styles.subtitle}>{slide.subtitle}</p>
-                <a
-                  href={slide.ctaHref}
-                  className={styles.cta}
-                >
-                  {slide.ctaText}
-                </a>
+              <div className={styles.slideInner}>
+                <div className={styles.slideContent}>
+                  <span className={styles.badge}>{slide.badge}</span>
+                  <h1 className={styles.title}>
+                    {slide.title.split('\n').map((line, j) => (
+                      <span key={j}>{line}{j < slide.title.split('\n').length - 1 && <br />}</span>
+                    ))}
+                  </h1>
+                  <p className={styles.subtitle}>{slide.subtitle}</p>
+                  <a href={slide.ctaHref} className={styles.cta}>
+                    {slide.ctaText}
+                  </a>
+                </div>
+                <div className={styles.slideImage}>
+                  <img
+                    src={slide.image}
+                    alt={slide.imageAlt}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '12px' }}
+                    onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                  />
+                </div>
               </div>
             </div>
           ))}
