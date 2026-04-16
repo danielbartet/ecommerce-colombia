@@ -84,7 +84,7 @@ export default function Footer() {
 
         {/* Copyright */}
         <div className={styles.copy}>
-          <p>© 2024 MULTIOFERTAS.NET — Todos los derechos reservados. Colombia 🇨🇴</p>
+          <p>© 2026 MILTICODESAS — Todos los derechos reservados. Colombia 🇨🇴</p>
         </div>
 
       </div>
